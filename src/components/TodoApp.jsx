@@ -29,6 +29,9 @@ function addList(){
 }
 function listSize(){
     count = list.length
+    if(checkbox.current.checked){
+        
+    }
 }
 
 
@@ -44,7 +47,7 @@ function listSize(){
         {
             list.map((item)=> (
             
-            <li>{item.itemName} <input type="checkbox"></input></li>
+            <li>{item.itemName} <input ref = {checkbox} type="checkbox"></input></li>
         ))
         }
         </ul>
