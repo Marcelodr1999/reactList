@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import React from 'react';
 
-import './App.css'
 
-function TodoItem() {
-  const [count, setCount] = useState(0)
+function TodoItem({ todo, markComplete }) {
 
   return (
-    <>
-    <div>
-        
-    </div>
-    </>
-  )
+    <li>
+      {todo.itemName} <input type="checkbox" checked={todo.completed} onChange={() => markComplete()} />
+    </li>
+  );
 }
 
 export default TodoItem

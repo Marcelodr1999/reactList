@@ -1,18 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import TodoItem from './TodoItem';
 
-import './App.css'
-
-function TodoList() {
-  const [count, setCount] = useState(0)
+function TodoList({ todos, markComplete }) {
 
   return (
-    <>
-    <div>
-        
-    </div>
-    </>
-  )
+    <ul>
+      {todos.map((todo, index) => (
+        <TodoItem key={index} todo={todo} markComplete={() => markComplete(index)} />
+      ))}
+    </ul>
+  );
 }
 
 export default TodoList

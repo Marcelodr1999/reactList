@@ -1,20 +1,21 @@
 import { useState } from 'react'
-
+import TodoList from './TodoList';
 function TodoApp() {
 
     const initList = [
         {
           itemName: 'Take out trash',
+          completed: false,
         },
         {
           itemName: 'Buy Groceries',
+          completed: false,
         },
       ];
 
 
     const[list, setList] = useState(initList);
     const[itemName, setItemName] = useState('');
-    const[count, setCount] = useState(list.length)
 
 
 function addItem(e){
@@ -24,34 +25,34 @@ function addItem(e){
 function addList(){
     const newList = list.concat({
         itemName,
+        completed: false,
     });
-    setList(newList)
+    setList(newList);
+    setItemName('');
 }
-function listSize(){
-    count = list.length
-    if(checkbox.current.checked){
-        
-    }
+
+
+function markComplete(index) {
+  const updatedList = [...list];
+  updatedList[index].completed = !updatedList[index].completed;
+  setList(updatedList);
 }
+
+const remainingCount = list.filter((item) => !item.completed).length;
 
 
   return (
     <>
     <div>
-    <div>
-        <input value= {itemName} onChange={addItem}></input>
-        <button onClick={addList}>Add Item</button>
-        <p>Remaining list items: {count}</p>
+      <div>
+        <h2>Add items to the list</h2>
+          <input value= {itemName} onChange={addItem}></input>
+          <button onClick={addList}>Add Item</button>
+          <h2>Remaining list items: {remainingCount}</h2>
+          <p>Check the box to mark as complete</p>
+      </div>
+      <TodoList todos={list} markComplete={markComplete} />
     </div>
-    <ul>
-        {
-            list.map((item)=> (
-            
-            <li>{item.itemName} <input ref = {checkbox} type="checkbox"></input></li>
-        ))
-        }
-        </ul>
-        </div>
     </>
   )
 }
